@@ -2,10 +2,11 @@ import numpy as np
 import cv2
 
 def draw(img, corners, imgpts):
-    corner = tuple(corners[0].ravel())
-    img = cv2.line(img, corner, tuple(imgpts[0].ravel()), (255,0,0), 5)
-    img = cv2.line(img, corner, tuple(imgpts[1].ravel()), (0,255,0), 5)
-    img = cv2.line(img, corner, tuple(imgpts[2].ravel()), (0,0,255), 5)
+    corner = tuple(np.round(corners[0].ravel()).astype(int))
+    print(corner)
+    img = cv2.line(img, corner, tuple(np.round((imgpts[0].ravel()).astype(int))), (255, 0, 0), 5)
+    img = cv2.line(img, corner, tuple(np.round((imgpts[1].ravel()).astype(int))), (0, 255, 0), 5)
+    img = cv2.line(img, corner, tuple(np.round((imgpts[2].ravel().astype(int)))), (0, 0, 255), 5)
     return img
 
 def camera_pose_from_homography(Kinv, H):
